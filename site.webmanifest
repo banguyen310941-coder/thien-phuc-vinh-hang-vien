@@ -1,0 +1,11 @@
+{
+  "name": "Thiên Phúc Vĩnh Hằng Viên",
+  "short_name": "Thiên Phúc",
+  "lang": "vi-VN",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fffdf8",
+  "theme_color": "#153b2b",
+  "description": "Công viên nghĩa trang sinh thái Thiên Phúc Vĩnh Hằng Viên tại Uông Bí – Yên Tử, Quảng Ninh."
+}
