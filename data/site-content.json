@@ -10,8 +10,12 @@
       "src": "https://nghiatrangthienphuc.com/wp-content/uploads/2026/06/Thienphucvinhhangvien01.jpg"
     },
     "overview": {
-      "label": "Tổng quan dự án",
+      "label": "Tổng quan dự án - ảnh dự phòng",
       "src": "/assets/uploads/overview-1787919202977.jpg"
+    },
+    "overviewVideo": {
+      "label": "Tổng quan dự án - LINK VIDEO",
+      "src": ""
     },
     "location": {
       "label": "Vị trí - hạ tầng liên kết vùng",
