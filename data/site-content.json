@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T12:00:15.239Z",
+  "updatedAt": "2026-08-28T12:01:00.649Z",
   "slots": {
     "logo": {
       "label": "Logo website",
@@ -23,7 +23,7 @@
     },
     "amenityLake": {
       "label": "Tiện ích - Hồ cảnh quan",
-      "src": "assets/amenities/ho-canh-quan.webp"
+      "src": "/assets/uploads/amenityLake-1787918458877.jpg"
     },
     "amenityOffice": {
       "label": "Tiện ích - Nhà điều hành",
