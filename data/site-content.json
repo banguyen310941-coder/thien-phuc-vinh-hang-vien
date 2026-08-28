@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T12:01:52.460Z",
+  "updatedAt": "2026-08-28T12:02:10.850Z",
   "slots": {
     "logo": {
       "label": "Logo website",
@@ -39,7 +39,7 @@
     },
     "amenityCare": {
       "label": "Tiện ích - Chăm sóc mộ phần",
-      "src": "assets/amenities/cham-soc-mo-phan.webp"
+      "src": "/assets/uploads/amenityCare-1787918529370.jpg"
     },
     "productSingle": {
       "label": "Sản phẩm - Mộ đơn",
