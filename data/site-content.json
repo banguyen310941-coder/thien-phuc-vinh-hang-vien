@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T11:58:26.779Z",
+  "updatedAt": "2026-08-28T11:59:11.374Z",
   "slots": {
     "logo": {
       "label": "Logo website",
@@ -47,7 +47,7 @@
     },
     "productDouble": {
       "label": "Sản phẩm - Mộ đôi",
-      "src": "assets/products/img-0406.webp"
+      "src": "/assets/uploads/productDouble-1787918349808.jpg"
     },
     "productFamily": {
       "label": "Sản phẩm - Khu gia tộc",
