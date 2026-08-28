@@ -20,6 +20,47 @@ const slotMap={
 
 function applySlot(slot,src){(slotMap[slot]||[]).forEach(sel=>document.querySelectorAll(sel).forEach(el=>{if(el&&src)el.src=src}));}
 
+function toVideoEmbed(url){
+  if(!url)return null;
+  const raw=String(url).trim();
+  try{
+    const u=new URL(raw,location.origin);
+    const host=u.hostname.replace(/^www\./,'');
+    if(host==='youtu.be'){
+      const id=u.pathname.split('/').filter(Boolean)[0];
+      return id?{type:'iframe',src:'https://www.youtube.com/embed/'+id}:null;
+    }
+    if(host==='youtube.com'||host==='m.youtube.com'){
+      let id=u.searchParams.get('v');
+      if(!id&&u.pathname.startsWith('/shorts/'))id=u.pathname.split('/')[2];
+      if(!id&&u.pathname.startsWith('/embed/'))id=u.pathname.split('/')[2];
+      return id?{type:'iframe',src:'https://www.youtube.com/embed/'+id}:null;
+    }
+    if(host==='vimeo.com'||host==='player.vimeo.com'){
+      const parts=u.pathname.split('/').filter(Boolean);const id=parts.find(x=>/^\d+$/.test(x));
+      return id?{type:'iframe',src:'https://player.vimeo.com/video/'+id}:null;
+    }
+    if(/\.(mp4|webm|ogg)(\?.*)?$/i.test(raw))return {type:'video',src:raw};
+  }catch{}
+  return null;
+}
+
+function applyOverviewVideo(url){
+  const target=document.querySelector('body:not(.admin-page) main>.section:first-of-type .rounded-media');
+  const video=toVideoEmbed(url);
+  if(!target||!video)return;
+  if(video.type==='iframe'){
+    const frame=document.createElement('iframe');
+    frame.src=video.src;frame.title='Video tổng quan Thiên Phúc Vĩnh Hằng Viên';frame.loading='lazy';frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';frame.allowFullscreen=true;
+    frame.style.width='100%';frame.style.aspectRatio='16 / 9';frame.style.height='auto';frame.style.border='0';frame.style.borderRadius='18px';frame.style.boxShadow='0 18px 45px rgba(13,47,32,.12)';
+    target.replaceWith(frame);
+  }else{
+    const el=document.createElement('video');el.src=video.src;el.controls=true;el.preload='metadata';el.playsInline=true;
+    el.style.width='100%';el.style.aspectRatio='16 / 9';el.style.objectFit='cover';el.style.borderRadius='18px';el.style.boxShadow='0 18px 45px rgba(13,47,32,.12)';
+    target.replaceWith(el);
+  }
+}
+
 function applyPageSpecific(slots){const p=location.pathname.replace(/\/$/,'')||'/';const src=k=>slots[k]?.src;
   if(p.includes('gioi-thieu')){document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('overview')||'');document.querySelector('.wide-image img')?.setAttribute('src',src('homeHero')||'');}
   if(p.includes('san-pham')){document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('productSingle')||'');}
@@ -28,4 +69,4 @@ function applyPageSpecific(slots){const p=location.pathname.replace(/\/$/,'')||'
   if(p.includes('lien-he'))document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('homeHero')||'');
 }
 
-fetch('/data/site-content.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(data=>{if(!data?.slots)return;Object.entries(data.slots).forEach(([k,v])=>applySlot(k,v.src));applyPageSpecific(data.slots)}).catch(()=>{});
+fetch('/data/site-content.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(data=>{if(!data?.slots)return;Object.entries(data.slots).forEach(([k,v])=>applySlot(k,v.src));applyOverviewVideo(data.slots.overviewVideo?.src);applyPageSpecific(data.slots)}).catch(()=>{});
