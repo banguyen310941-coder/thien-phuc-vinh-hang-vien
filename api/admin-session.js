@@ -1,0 +1,4 @@
+const crypto=require('crypto');
+function getCookie(req,name){const raw=req.headers.cookie||'';const m=raw.match(new RegExp('(?:^|; )'+name+'=([^;]+)'));return m?decodeURIComponent(m[1]):''}
+function valid(req){const s=process.env.ADMIN_SESSION_SECRET;if(!s)return false;const token=getCookie(req,'tp_admin');const [exp,sig]=token.split('.');if(!exp||!sig||Number(exp)<Date.now())return false;const expected=crypto.createHmac('sha256',s).update(String(exp)).digest('hex');try{return crypto.timingSafeEqual(Buffer.from(sig),Buffer.from(expected))}catch{return false}}
+module.exports=(req,res)=>res.status(valid(req)?200:401).json({ok:valid(req)});
