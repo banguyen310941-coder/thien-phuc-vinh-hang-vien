@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T12:01:22.820Z",
+  "updatedAt": "2026-08-28T12:01:40.133Z",
   "slots": {
     "logo": {
       "label": "Logo website",
@@ -27,7 +27,7 @@
     },
     "amenityOffice": {
       "label": "Tiện ích - Nhà điều hành",
-      "src": "assets/amenities/nha-dieu-hanh.webp"
+      "src": "/assets/uploads/amenityOffice-1787918498872.jpg"
     },
     "amenityParking": {
       "label": "Tiện ích - Bãi đỗ xe",
