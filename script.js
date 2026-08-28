@@ -5,7 +5,6 @@ document.querySelector('#form')?.addEventListener('submit',e=>{e.preventDefault(
 const slotMap={
   logo:['.brand img','.footer-brand img'],
   homeHero:['.hero-home .hero-bg','.news-highlight .rounded-media'],
-  overview:['body:not(.admin-page) main>.section:first-of-type .rounded-media'],
   location:['.location-visual img'],
   amenitySpiritual:['.amenity-grid article:nth-child(1) img'],
   amenityLake:['.amenity-grid article:nth-child(2) img'],
@@ -46,7 +45,10 @@ function toVideoEmbed(url){
 }
 
 function applyOverviewVideo(url){
-  const target=document.querySelector('body:not(.admin-page) main>.section:first-of-type .rounded-media');
+  const p=location.pathname.replace(/\/$/,'')||'/';
+  const isHome=p==='/'||p.endsWith('/index.html')||p==='index.html';
+  if(!isHome)return;
+  const target=document.querySelector('main>.section:first-of-type .rounded-media');
   const video=toVideoEmbed(url);
   if(!target||!video)return;
   if(video.type==='iframe'){
@@ -61,12 +63,20 @@ function applyOverviewVideo(url){
   }
 }
 
-function applyPageSpecific(slots){const p=location.pathname.replace(/\/$/,'')||'/';const src=k=>slots[k]?.src;
+function applyPageSpecific(slots){
+  const p=location.pathname.replace(/\/$/,'')||'/';const src=k=>slots[k]?.src;
+  const isHome=p==='/'||p.endsWith('/index.html')||p==='index.html';
+  if(isHome){const overview=document.querySelector('main>.section:first-of-type .rounded-media');if(overview&&src('overview'))overview.src=src('overview');}
   if(p.includes('gioi-thieu')){document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('overview')||'');document.querySelector('.wide-image img')?.setAttribute('src',src('homeHero')||'');}
-  if(p.includes('san-pham')){document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('productSingle')||'');}
-  if(p.includes('phoi-canh')){document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('homeHero')||'');const imgs=document.querySelectorAll('.gallery figure img');const keys=['overview','homeHero','productSingle','productDouble','productFamily','location','amenitySpiritual','amenityLake','amenityOffice','amenityParking','amenityGarden','amenityCare'];imgs.forEach((img,i)=>{if(keys[i]&&src(keys[i]))img.src=src(keys[i]);});}
+  if(p.includes('san-pham'))document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('productSingle')||'');
+  if(p.includes('mo-don')){document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('productSingle')||'');document.querySelector('.rounded-media')?.setAttribute('src',src('productSingle')||'');}
+  if(p.includes('mo-doi')){document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('productDouble')||'');document.querySelector('.rounded-media')?.setAttribute('src',src('productDouble')||'');}
+  if(p.includes('khu-gia-toc')){document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('productFamily')||'');document.querySelector('.rounded-media')?.setAttribute('src',src('productFamily')||'');}
+  if(p.includes('vi-tri'))document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('homeHero')||'');
+  if(p.includes('tien-ich'))document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('amenitySpiritual')||'');
+  if(p.includes('phoi-canh')){document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('homeHero')||'');const imgs=document.querySelectorAll('.gallery figure img');const keys=['overview','homeHero','location','amenitySpiritual','amenityLake','amenityOffice','amenityParking','amenityGarden','amenityCare','productSingle','productDouble','productFamily'];imgs.forEach((img,i)=>{if(keys[i]&&src(keys[i]))img.src=src(keys[i]);});}
   if(p.includes('tin-tuc'))document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('overview')||'');
   if(p.includes('lien-he'))document.querySelector('.page-hero .hero-bg')?.setAttribute('src',src('homeHero')||'');
 }
 
-fetch('/data/site-content.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(data=>{if(!data?.slots)return;Object.entries(data.slots).forEach(([k,v])=>applySlot(k,v.src));applyOverviewVideo(data.slots.overviewVideo?.src);applyPageSpecific(data.slots)}).catch(()=>{});
+fetch('/data/site-content.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(data=>{if(!data?.slots)return;Object.entries(data.slots).forEach(([k,v])=>applySlot(k,v.src));applyPageSpecific(data.slots);applyOverviewVideo(data.slots.overviewVideo?.src)}).catch(()=>{});
