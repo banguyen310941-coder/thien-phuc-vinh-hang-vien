@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T12:02:10.850Z",
+  "updatedAt": "2026-08-28T12:10:20.588Z",
   "slots": {
     "logo": {
       "label": "Logo website",
@@ -11,7 +11,7 @@
     },
     "overview": {
       "label": "Tổng quan dự án",
-      "src": "https://nghiatrangthienphuc.com/wp-content/uploads/2026/01/Tong-The-Thien-Phuc-Vinh-Hang-Vien.jpg"
+      "src": "/assets/uploads/overview-1787919019308.jpg"
     },
     "location": {
       "label": "Vị trí - hạ tầng liên kết vùng",
