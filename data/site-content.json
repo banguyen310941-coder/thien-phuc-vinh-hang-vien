@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T12:01:00.649Z",
+  "updatedAt": "2026-08-28T12:01:22.820Z",
   "slots": {
     "logo": {
       "label": "Logo website",
@@ -35,7 +35,7 @@
     },
     "amenityGarden": {
       "label": "Tiện ích - Cây xanh & vườn hoa",
-      "src": "assets/amenities/cay-xanh-vuon-hoa.webp"
+      "src": "/assets/uploads/amenityGarden-1787918481252.jpg"
     },
     "amenityCare": {
       "label": "Tiện ích - Chăm sóc mộ phần",
