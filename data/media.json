@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-29T09:10:03.840Z",
+  "updatedAt": "2026-08-29T09:10:17.339Z",
   "items": [
     {
       "id": "m1787982179699",
@@ -385,12 +385,14 @@
     },
     {
       "id": "m1787970985975",
-      "title": "IMG_0386",
+      "title": "Nhà Hàng Thủy Tạ",
       "src": "/assets/uploads/media-1787970984881.jpg",
-      "alt": "IMG_0386",
+      "alt": "Nhà Hàng Thủy Tạ",
       "tags": [],
       "createdAt": "2026-08-29T02:36:25.975Z",
-      "createdBy": "admin"
+      "createdBy": "admin",
+      "updatedAt": "2026-08-29T09:10:17.339Z",
+      "updatedBy": "admin"
     },
     {
       "id": "m1787970979078",
