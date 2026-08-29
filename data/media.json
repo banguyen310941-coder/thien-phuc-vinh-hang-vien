@@ -1,6 +1,17 @@
 {
-  "updatedAt": "2026-08-29T02:22:18.408Z",
+  "updatedAt": "2026-08-29T02:23:47.519Z",
   "items": [
+    {
+      "id": "m1787970227519",
+      "title": "Tiện ích - Bãi đỗ xe",
+      "src": "/assets/uploads/amenityParking-1787970225583.jpg",
+      "alt": "Tiện ích - Bãi đỗ xe",
+      "tags": [
+        "giao-dien"
+      ],
+      "createdAt": "2026-08-29T02:23:47.519Z",
+      "createdBy": "admin"
+    },
     {
       "id": "m1787970138408",
       "title": "Trang chủ - ảnh banner chính",
