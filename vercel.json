@@ -3,7 +3,8 @@
   "trailingSlash": false,
   "redirects": [
     {"source":"/index","destination":"/","permanent":true},
-    {"source":"/index.html","destination":"/","permanent":true}
+    {"source":"/index.html","destination":"/","permanent":true},
+    {"source":"/tin-bai.html","has":[{"type":"query","key":"id","value":"(?<id>[a-z0-9-]+)"}],"destination":"/tin-tuc/:id.html","permanent":true}
   ],
   "rewrites": [
     {"source":"/tin-tuc/:id.html","destination":"/api/article?id=:id"}
