@@ -19,6 +19,7 @@
     {"source":"/tin-bai.html","has":[{"type":"query","key":"id","value":"(?<id>[a-z0-9-]+)"}],"destination":"/tin-tuc/:id","permanent":true}
   ],
   "rewrites": [
+    {"source":"/sitemap.xml","destination":"/api/sitemap"},
     {"source":"/tin-tuc/:id","destination":"/api/article?id=:id"}
   ],
   "headers": [
