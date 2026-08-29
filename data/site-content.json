@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T12:13:24.314Z",
+  "updatedAt": "2026-08-29T00:00:00.000Z",
   "slots": {
     "logo": {
       "label": "Logo website",
@@ -7,7 +7,7 @@
     },
     "homeHero": {
       "label": "Trang chủ - ảnh banner chính",
-      "src": "https://nghiatrangthienphuc.com/wp-content/uploads/2026/06/Thienphucvinhhangvien01.jpg"
+      "src": "/assets/uploads/overview-1787919202977.jpg"
     },
     "overview": {
       "label": "Tổng quan dự án - ảnh dự phòng",
