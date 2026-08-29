@@ -1,6 +1,15 @@
 {
-  "updatedAt": "2026-08-29T03:02:39.750Z",
+  "updatedAt": "2026-08-29T03:02:44.330Z",
   "items": [
+    {
+      "id": "m1787972564330",
+      "title": "IMG_0405",
+      "src": "/assets/uploads/media-1787972563207.jpg",
+      "alt": "IMG_0405",
+      "tags": [],
+      "createdAt": "2026-08-29T03:02:44.330Z",
+      "createdBy": "admin"
+    },
     {
       "id": "m1787972559750",
       "title": "IMG_0403",
