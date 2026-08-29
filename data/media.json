@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-29T09:09:48.581Z",
+  "updatedAt": "2026-08-29T09:10:03.840Z",
   "items": [
     {
       "id": "m1787982179699",
@@ -329,12 +329,14 @@
     },
     {
       "id": "m1787971010701",
-      "title": "IMG_0392",
+      "title": "Chòi Nghỉ",
       "src": "/assets/uploads/media-1787971009276.jpg",
-      "alt": "IMG_0392",
+      "alt": "Chòi Nghỉ",
       "tags": [],
       "createdAt": "2026-08-29T02:36:50.701Z",
-      "createdBy": "admin"
+      "createdBy": "admin",
+      "updatedAt": "2026-08-29T09:10:03.840Z",
+      "updatedBy": "admin"
     },
     {
       "id": "m1787971006185",
