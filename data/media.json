@@ -1,6 +1,17 @@
 {
-  "updatedAt": "2026-08-28T12:13:25.178Z",
+  "updatedAt": "2026-08-29T02:22:18.408Z",
   "items": [
+    {
+      "id": "m1787970138408",
+      "title": "Trang chủ - ảnh banner chính",
+      "src": "/assets/uploads/homeHero-1787970136311.jpg",
+      "alt": "Trang chủ - ảnh banner chính",
+      "tags": [
+        "giao-dien"
+      ],
+      "createdAt": "2026-08-29T02:22:18.408Z",
+      "createdBy": "admin"
+    },
     {
       "id": "m1787919205178",
       "title": "Tổng quan dự án",
