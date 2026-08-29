@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-29T05:42:59.699Z",
+  "updatedAt": "2026-08-29T09:09:48.581Z",
   "items": [
     {
       "id": "m1787982179699",
@@ -318,12 +318,14 @@
     },
     {
       "id": "m1787971014092",
-      "title": "IMG_0393",
+      "title": "Đền Trình",
       "src": "/assets/uploads/media-1787971013190.jpg",
-      "alt": "IMG_0393",
+      "alt": "Đền Trình",
       "tags": [],
       "createdAt": "2026-08-29T02:36:54.092Z",
-      "createdBy": "admin"
+      "createdBy": "admin",
+      "updatedAt": "2026-08-29T09:09:48.581Z",
+      "updatedBy": "admin"
     },
     {
       "id": "m1787971010701",
