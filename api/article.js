@@ -1,100 +1,21 @@
 const news=require('../data/news.json');
 const site=require('../data/site-content.json');
-
 const origin='https://www.thienphucvinhhangvien.net';
 const fallback='/assets/uploads/overview-1787919202977.jpg';
-const logo=site?.slots?.logo?.src||'https://nghiatrangthienphuc.com/wp-content/uploads/2026/01/Logo-Thien-Phuc-Vinh-Hang-Vien.png';
+const logo=site?.slots?.logo?.src||'/assets/uploads/media-1787982178912.png';
 const extra={
-  'thien-phuc-vinh-hang-vien-uong-bi-yen-tu':['/assets/uploads/location-1787918305654.jpg','/assets/uploads/amenityGarden-1787918481252.jpg'],
-  'kinh-nghiem-lua-chon-cong-vien-nghia-trang':['/assets/uploads/overview-1787919202977.jpg','/assets/uploads/amenityGarden-1787918481252.jpg'],
-  'mo-don-mo-doi-khu-gia-toc-khac-nhau-the-nao':['/assets/uploads/productSingle-1787918273700.jpg','/assets/uploads/productFamily-1787918353180.jpg'],
-  'y-nghia-canh-quan-xanh-trong-hoa-vien-nghia-trang':['/assets/uploads/overview-1787919202977.jpg','/assets/uploads/amenityLake-1787918458877.jpg'],
-  'tham-quan-thien-phuc-vinh-hang-vien-can-tim-hieu-gi':['/assets/uploads/location-1787918305654.jpg','/assets/uploads/overview-1787919202977.jpg'],
-  'cham-soc-mo-phan-lau-dai':['/assets/uploads/amenityGarden-1787918481252.jpg','/assets/uploads/amenityCare-1787970377161.jpg']
+ 'thien-phuc-vinh-hang-vien-uong-bi-yen-tu':['/assets/uploads/media-1787971017351.jpg','/assets/uploads/media-1787971009276.jpg'],
+ 'kinh-nghiem-lua-chon-cong-vien-nghia-trang':['/assets/uploads/media-1787971005129.jpg','/assets/uploads/media-1787972584360.jpg'],
+ 'mo-don-mo-doi-khu-gia-toc-khac-nhau-the-nao':['/assets/uploads/media-1787972692127.jpg','/assets/uploads/media-1787972687436.jpg'],
+ 'y-nghia-canh-quan-xanh-trong-hoa-vien-nghia-trang':['/assets/uploads/media-1787971001151.jpg','/assets/uploads/media-1787971013190.jpg'],
+ 'tham-quan-thien-phuc-vinh-hang-vien-can-tim-hieu-gi':['/assets/uploads/media-1787972580320.jpg','/assets/uploads/media-1787972575878.jpg'],
+ 'cham-soc-mo-phan-lau-dai':['/assets/uploads/media-1787971032599.jpg','/assets/uploads/media-1787971017351.jpg']
 };
-
-function esc(v=''){return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+function esc(v=''){return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#039;'}[m]));}
 function abs(v=''){if(!v)return origin+fallback;return /^https?:\/\//i.test(v)?v:origin+(v.startsWith('/')?v:'/'+v);}
 function cleanText(v=''){return String(v).replace(/[#*_`>\[\]()]/g,' ').replace(/\s+/g,' ').trim();}
-function inline(v=''){
-  let s=esc(v);
-  s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]+)\)/g,(_,t,u)=>`<a class="text-link" href="${esc(u)}">${t}</a>`);
-  s=s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
-  s=s.replace(/__([^_]+)__/g,'<strong>$1</strong>');
-  s=s.replace(/\*([^*]+)\*/g,'<em>$1</em>');
-  return s;
-}
-function renderMarkdown(md='',images=[],title=''){
-  const lines=String(md).replace(/\r/g,'').split('\n');
-  const blocks=[];
-  let para=[];
-  const flush=()=>{if(!para.length)return;const text=para.join(' ').trim();if(text)blocks.push({type:'p',text});para=[];};
-  for(const raw of lines){
-    const line=raw.trim();
-    if(!line){flush();continue;}
-    const m=line.match(/^(#{1,4})\s+(.+)$/);
-    if(m){flush();const level=Math.min(3,Math.max(2,m[1].length));blocks.push({type:'h'+level,text:m[2].trim()});continue;}
-    if(/^[-*]\s+/.test(line)){flush();blocks.push({type:'li',text:line.replace(/^[-*]\s+/,'')});continue;}
-    para.push(line);
-  }
-  flush();
-  let html='',pCount=0,listOpen=false,imgIndex=0;
-  const closeList=()=>{if(listOpen){html+='</ul>';listOpen=false;}};
-  for(const b of blocks){
-    if(b.type==='li'){
-      if(!listOpen){html+='<ul>';listOpen=true;}
-      html+=`<li>${inline(b.text)}</li>`;
-      continue;
-    }
-    closeList();
-    if(b.type==='h2'||b.type==='h3') html+=`<${b.type}>${inline(b.text)}</${b.type}>`;
-    else{
-      pCount++;
-      html+=`<p>${inline(b.text)}</p>`;
-      if((pCount===3||pCount===7)&&images[imgIndex]){
-        html+=`<figure class="wide-image"><img src="${esc(images[imgIndex])}" alt="${esc(title)} tại Thiên Phúc Vĩnh Hằng Viên" loading="lazy"></figure>`;
-        imgIndex++;
-      }
-    }
-  }
-  closeList();
-  while(images[imgIndex]){
-    html+=`<figure class="wide-image"><img src="${esc(images[imgIndex])}" alt="${esc(title)} tại Thiên Phúc Vĩnh Hằng Viên" loading="lazy"></figure>`;
-    imgIndex++;
-  }
-  return html;
-}
-function getId(req){
-  if(req.query?.id)return String(req.query.id).replace(/\.html$/,'');
-  const path=(req.url||'').split('?')[0];
-  const last=path.split('/').filter(Boolean).pop()||'';
-  return last.replace(/\.html$/,'').replace(/^article$/,'');
-}
+function inline(v=''){let s=esc(v);s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]+)\)/g,(_,t,u)=>`<a class="text-link" href="${esc(u)}">${t}</a>`);s=s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');s=s.replace(/__([^_]+)__/g,'<strong>$1</strong>');s=s.replace(/\*([^*]+)\*/g,'<em>$1</em>');return s;}
+function renderMarkdown(md='',images=[],title=''){const lines=String(md).replace(/\r/g,'').split('\n'),blocks=[];let para=[];const flush=()=>{if(!para.length)return;const text=para.join(' ').trim();if(text)blocks.push({type:'p',text});para=[];};for(const raw of lines){const line=raw.trim();if(!line){flush();continue;}const m=line.match(/^(#{1,4})\s+(.+)$/);if(m){flush();const level=Math.min(3,Math.max(2,m[1].length));blocks.push({type:'h'+level,text:m[2].trim()});continue;}if(/^[-*]\s+/.test(line)){flush();blocks.push({type:'li',text:line.replace(/^[-*]\s+/,'')});continue;}para.push(line);}flush();let html='',pCount=0,listOpen=false,imgIndex=0;const closeList=()=>{if(listOpen){html+='</ul>';listOpen=false;}};for(const b of blocks){if(b.type==='li'){if(!listOpen){html+='<ul>';listOpen=true;}html+=`<li>${inline(b.text)}</li>`;continue;}closeList();if(b.type==='h2'||b.type==='h3')html+=`<${b.type}>${inline(b.text)}</${b.type}>`;else{pCount++;html+=`<p>${inline(b.text)}</p>`;if((pCount===3||pCount===7)&&images[imgIndex]){html+=`<figure class="wide-image"><img src="${esc(images[imgIndex])}" alt="${esc(title)} - hình ảnh thực tế từ thư viện Thiên Phúc Vĩnh Hằng Viên" loading="lazy"></figure>`;imgIndex++;}}}closeList();while(images[imgIndex]){html+=`<figure class="wide-image"><img src="${esc(images[imgIndex])}" alt="${esc(title)} - hình ảnh Thiên Phúc Vĩnh Hằng Viên" loading="lazy"></figure>`;imgIndex++;}return html;}
+function getId(req){if(req.query?.id)return String(req.query.id).replace(/\.html$/,'');const path=(req.url||'').split('?')[0],last=path.split('/').filter(Boolean).pop()||'';return last.replace(/\.html$/,'').replace(/^article$/,'');}
 function dateVN(v=''){const a=String(v).split('-');return a.length===3?`${a[2]}.${a[1]}.${a[0]}`:v;}
-
-module.exports=(req,res)=>{
-  const id=getId(req);
-  const n=(news.items||[]).find(x=>x.id===id&&x.status==='published');
-  if(!n){
-    res.statusCode=404;
-    res.setHeader('Content-Type','text/html; charset=utf-8');
-    res.setHeader('X-Robots-Tag','noindex, follow');
-    return res.end('<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Không tìm thấy bài viết</title><link rel="stylesheet" href="/styles.css"></head><body><main class="wrap article"><h1>Không tìm thấy bài viết</h1><p><a href="/tin-tuc.html">← Quay lại Tin tức</a></p></main></body></html>');
-  }
-
-  const cover=n.cover||fallback;
-  const images=extra[n.id]||['/assets/uploads/location-1787918305654.jpg','/assets/uploads/amenityGarden-1787918481252.jpg'];
-  const canonical=`${origin}/tin-tuc/${encodeURIComponent(n.id)}.html`;
-  const description=(n.excerpt||cleanText(n.content)).slice(0,158);
-  const body=renderMarkdown(n.content||'',images,n.title);
-  const source=n.source?`<aside class="source-box">Nguồn tham khảo: <a href="${esc(n.source)}" target="_blank" rel="noopener noreferrer">${esc(n.source)}</a></aside>`:'';
-  const schema=JSON.stringify({'@context':'https://schema.org','@graph':[{'@type':'Article',headline:n.title,description,image:[abs(cover),...images.map(abs)],datePublished:n.publishedAt||'',dateModified:n.updatedAt||n.publishedAt||'',mainEntityOfPage:canonical,inLanguage:'vi-VN',author:{'@type':'Organization',name:'Thiên Phúc Vĩnh Hằng Viên'},publisher:{'@type':'Organization',name:'Thiên Phúc Vĩnh Hằng Viên',url:origin+'/'}},{'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Trang chủ',item:origin+'/'},{'@type':'ListItem',position:2,name:'Tin tức',item:origin+'/tin-tuc.html'},{'@type':'ListItem',position:3,name:n.title,item:canonical}]}]}).replace(/</g,'\\u003c');
-
-  res.statusCode=200;
-  res.setHeader('Content-Type','text/html; charset=utf-8');
-  res.setHeader('Cache-Control','public, max-age=0, s-maxage=300, stale-while-revalidate=600');
-  res.setHeader('X-Robots-Tag','index, follow, max-image-preview:large');
-  res.end(`<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(n.title)} | Thiên Phúc Vĩnh Hằng Viên</title><meta name="description" content="${esc(description)}"><meta name="robots" content="index,follow,max-image-preview:large"><meta name="theme-color" content="#153b2b"><link rel="canonical" href="${canonical}"><meta property="og:locale" content="vi_VN"><meta property="og:type" content="article"><meta property="og:site_name" content="Thiên Phúc Vĩnh Hằng Viên"><meta property="og:title" content="${esc(n.title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="${abs(cover)}"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">${schema}</script><link rel="stylesheet" href="/styles.css"><style>
-.article-hero{padding:72px 0 30px;background:#153b2b;color:#fff}.article-hero .back{color:#d9b66f;font-size:12px}.article-hero h1{max-width:860px;margin:12px 0 8px;color:#fff;font-size:30px!important;font-weight:600!important;line-height:1.35!important;letter-spacing:0}.article-hero p{font-size:12px!important;opacity:.78;margin:0}.article{max-width:800px;padding-top:32px;padding-bottom:68px}.article-cover{display:block;width:100%;max-height:480px;object-fit:cover;margin-bottom:26px}.article .lead{font-size:15px!important;line-height:1.85!important;font-weight:400!important;color:#4f5c55!important;border-left:2px solid #b68a45;padding-left:15px;margin:0 0 28px}.article p{font-family:'Be Vietnam Pro',Arial,sans-serif!important;font-size:15px!important;line-height:1.85!important;font-weight:400!important;color:#4f5c55!important;margin:0 0 17px!important;letter-spacing:0!important}.article p strong,.article p b,.article li strong,.article li b{font-weight:500!important;color:#30463a!important}.article h2{font-size:20px!important;line-height:1.45!important;font-weight:600!important;margin:32px 0 12px!important;color:#153b2b!important;letter-spacing:0!important}.article h3{font-size:16px!important;line-height:1.5!important;font-weight:600!important;margin:23px 0 9px!important;color:#214c39!important;letter-spacing:0!important}.article ul{margin:0 0 18px 20px;padding:0}.article li{font-size:15px;line-height:1.75;font-weight:400;color:#4f5c55;margin:6px 0}.article a{font-size:inherit;overflow-wrap:anywhere}.article .text-link{display:inline;color:#8d672f;font-weight:500;border:0;padding:0;margin:0;text-decoration:underline;text-decoration-color:#d7bd8d;text-underline-offset:3px}.wide-image{margin:28px 0}.wide-image img{display:block;width:100%;max-height:480px;object-fit:cover}.source-box{font-size:12px;line-height:1.7;margin:30px 0;padding:15px 16px;background:#f4f0e7;border-left:2px solid #b68a45}.source-box a{color:#8d672f}.site-footer a{display:block}@media(max-width:700px){.article-hero{padding:62px 0 26px}.article-hero h1{font-size:25px!important}.article{padding-top:24px;padding-bottom:52px}.article p,.article li,.article .lead{font-size:14px!important;line-height:1.8!important}.article h2{font-size:18px!important;margin-top:28px!important}.article h3{font-size:15px!important}}
-</style></head><body><header class="site-header"><div class="wrap nav"><a class="brand" href="/index.html"><img src="${esc(logo)}" alt="Logo Thiên Phúc Vĩnh Hằng Viên"></a><button class="menu-toggle" aria-label="Mở menu">☰</button><nav class="main-nav"><a href="/index.html">Trang chủ</a><a href="/gioi-thieu.html">Giới thiệu</a><a href="/san-pham.html">Sản phẩm</a><a href="/vi-tri.html">Vị trí</a><a href="/tien-ich.html">Tiện ích</a><a href="/phoi-canh.html">Phối cảnh</a><a href="/tin-tuc.html" aria-current="page">Tin tức</a><a href="/lien-he.html">Liên hệ</a></nav><a class="nav-cta" href="/lien-he.html">Đăng ký tham quan</a></div></header><main><section class="article-hero"><div class="wrap"><a class="back" href="/tin-tuc.html">← Tin tức Thiên Phúc</a><h1>${esc(n.title)}</h1><p>${esc(dateVN(n.publishedAt||''))}</p></div></section><article class="wrap article"><img class="article-cover" src="${esc(cover)}" alt="${esc(n.title)}" loading="eager"><p class="lead">${esc(n.excerpt||'')}</p>${body}${source}<p><a class="text-link" href="/tin-tuc.html">Xem thêm bài viết</a> · <a class="text-link" href="/lien-he.html">Đăng ký tham quan dự án</a></p></article></main><footer class="site-footer"><div class="wrap footer-grid"><div class="footer-brand"><img src="${esc(logo)}" alt="Thiên Phúc Vĩnh Hằng Viên"><p>Hoa viên nghĩa trang sinh thái tại Uông Bí – Yên Tử, Quảng Ninh.</p></div><div><strong>Khám phá</strong><a href="/gioi-thieu.html">Giới thiệu</a><a href="/san-pham.html">Sản phẩm</a><a href="/tien-ich.html">Tiện ích</a></div><div><strong>Thông tin</strong><a href="/tin-tuc.html">Tin tức</a><a href="/lien-he.html">Liên hệ</a></div></div><div class="copyright">© 2026 Thiên Phúc Vĩnh Hằng Viên.</div></footer><script src="/script.js"></script></body></html>`);
-};
+module.exports=(req,res)=>{const id=getId(req),n=(news.items||[]).find(x=>x.id===id&&x.status==='published');if(!n){res.statusCode=404;res.setHeader('Content-Type','text/html; charset=utf-8');res.setHeader('X-Robots-Tag','noindex, follow');return res.end('<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Không tìm thấy bài viết</title><link rel="stylesheet" href="/styles.css"></head><body><main class="wrap article"><h1>Không tìm thấy bài viết</h1><p><a href="/tin-tuc.html">← Quay lại Tin tức</a></p></main></body></html>');}const cover=n.cover||fallback,images=extra[n.id]||['/assets/uploads/media-1787971017351.jpg','/assets/uploads/media-1787971009276.jpg'],canonical=`${origin}/tin-tuc/${encodeURIComponent(n.id)}.html`,description=(n.excerpt||cleanText(n.content)).slice(0,158),body=renderMarkdown(n.content||'',images,n.title),source=n.source?`<aside class="source-box">Nguồn tham khảo: <a href="${esc(n.source)}" target="_blank" rel="noopener noreferrer">${esc(n.source)}</a></aside>`:'';const schema=JSON.stringify({'@context':'https://schema.org','@graph':[{'@type':'Article',headline:n.title,description,image:[abs(cover),...images.map(abs)],datePublished:n.publishedAt||'',dateModified:n.updatedAt||n.publishedAt||'',mainEntityOfPage:canonical,inLanguage:'vi-VN',author:{'@type':'Organization',name:'Thiên Phúc Vĩnh Hằng Viên'},publisher:{'@type':'Organization',name:'Thiên Phúc Vĩnh Hằng Viên',url:origin+'/'}},{'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Trang chủ',item:origin+'/'},{'@type':'ListItem',position:2,name:'Tin tức',item:origin+'/tin-tuc.html'},{'@type':'ListItem',position:3,name:n.title,item:canonical}]}]}).replace(/</g,'\\u003c');res.statusCode=200;res.setHeader('Content-Type','text/html; charset=utf-8');res.setHeader('Cache-Control','public, max-age=0, s-maxage=300, stale-while-revalidate=600');res.setHeader('X-Robots-Tag','index, follow, max-image-preview:large');res.end(`<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(n.title)} | Thiên Phúc Vĩnh Hằng Viên</title><meta name="description" content="${esc(description)}"><meta name="robots" content="index,follow,max-image-preview:large"><meta name="theme-color" content="#153b2b"><link rel="canonical" href="${canonical}"><meta property="og:locale" content="vi_VN"><meta property="og:type" content="article"><meta property="og:site_name" content="Thiên Phúc Vĩnh Hằng Viên"><meta property="og:title" content="${esc(n.title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="${abs(cover)}"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">${schema}</script><link rel="stylesheet" href="/styles.css"><style>.article-hero{padding:72px 0 30px;background:#153b2b;color:#fff}.article-hero .back{color:#d9b66f;font-size:12px}.article-hero h1{max-width:860px;margin:12px 0 8px;color:#fff;font-size:30px!important;font-weight:600!important;line-height:1.35!important}.article-hero p{font-size:12px!important;opacity:.78}.article{max-width:800px;padding-top:32px;padding-bottom:68px}.article-cover{display:block;width:100%;max-height:480px;object-fit:cover;margin-bottom:26px}.article .lead,.article p{font-family:'Be Vietnam Pro',Arial,sans-serif!important;font-size:15px!important;line-height:1.85!important;font-weight:400!important;color:#4f5c55!important}.article .lead{border-left:2px solid #b68a45;padding-left:15px;margin:0 0 28px}.article p{margin:0 0 17px!important}.article p strong,.article li strong{font-weight:500!important;color:#30463a!important}.article h2{font-size:20px!important;line-height:1.45!important;font-weight:600!important;margin:32px 0 12px!important;color:#153b2b!important}.article h3{font-size:16px!important;line-height:1.5!important;font-weight:600!important;margin:23px 0 9px!important;color:#214c39!important}.article ul{margin:0 0 18px 20px;padding:0}.article li{font-size:15px;line-height:1.75;font-weight:400;color:#4f5c55;margin:6px 0}.article .text-link{display:inline;color:#8d672f;font-weight:500;text-decoration:underline;text-decoration-color:#d7bd8d;text-underline-offset:3px}.wide-image{margin:28px 0}.wide-image img{display:block;width:100%;max-height:480px;object-fit:cover}.source-box{font-size:12px;line-height:1.7;margin:30px 0;padding:15px 16px;background:#f4f0e7;border-left:2px solid #b68a45}@media(max-width:700px){.article-hero{padding:62px 0 26px}.article-hero h1{font-size:25px!important}.article{padding-top:24px;padding-bottom:52px}.article p,.article li,.article .lead{font-size:14px!important}.article h2{font-size:18px!important}.article h3{font-size:15px!important}}</style></head><body><header class="site-header"><div class="wrap nav"><a class="brand" href="/index.html"><img src="${esc(logo)}" alt="Logo Thiên Phúc Vĩnh Hằng Viên"></a><button class="menu-toggle" aria-label="Mở menu">☰</button><nav class="main-nav"><a href="/index.html">Trang chủ</a><a href="/gioi-thieu.html">Giới thiệu</a><a href="/san-pham.html">Sản phẩm</a><a href="/vi-tri.html">Vị trí</a><a href="/tien-ich.html">Tiện ích</a><a href="/phoi-canh.html">Phối cảnh</a><a href="/tin-tuc.html" aria-current="page">Tin tức</a><a href="/lien-he.html">Liên hệ</a></nav><a class="nav-cta" href="/lien-he.html">Đăng ký tham quan</a></div></header><main><section class="article-hero"><div class="wrap"><a class="back" href="/tin-tuc.html">← Tin tức Thiên Phúc</a><h1>${esc(n.title)}</h1><p>${esc(dateVN(n.publishedAt||''))}</p></div></section><article class="wrap article"><img class="article-cover" src="${esc(cover)}" alt="${esc(n.title)}" loading="eager"><p class="lead">${esc(n.excerpt||'')}</p>${body}${source}<p><a class="text-link" href="/tin-tuc.html">Xem thêm bài viết</a> · <a class="text-link" href="/lien-he.html">Đăng ký tham quan dự án</a></p></article></main><footer class="site-footer"><div class="wrap footer-grid"><div class="footer-brand"><img src="${esc(logo)}" alt="Thiên Phúc Vĩnh Hằng Viên"><p>Hoa viên nghĩa trang sinh thái tại Uông Bí – Yên Tử, Quảng Ninh.</p></div><div><strong>Khám phá</strong><a href="/gioi-thieu.html">Giới thiệu</a><a href="/san-pham.html">Sản phẩm</a><a href="/tien-ich.html">Tiện ích</a></div><div><strong>Thông tin</strong><a href="/tin-tuc.html">Tin tức</a><a href="/lien-he.html">Liên hệ</a></div></div><div class="copyright">© 2026 Thiên Phúc Vĩnh Hằng Viên.</div></footer><script src="/script.js"></script></body></html>`);};
