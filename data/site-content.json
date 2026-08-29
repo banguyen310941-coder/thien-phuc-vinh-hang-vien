@@ -1,19 +1,61 @@
 {
-  "updatedAt": "2026-08-29T00:15:00.000Z",
+  "updatedAt": "2026-08-29T02:22:17.631Z",
   "slots": {
-    "logo": {"label": "Logo website", "src": "https://nghiatrangthienphuc.com/wp-content/uploads/2026/01/Logo-Thien-Phuc-Vinh-Hang-Vien.png"},
-    "homeHero": {"label": "Trang chủ - ảnh banner chính", "src": "/assets/uploads/overview-1787919202977.jpg"},
-    "overview": {"label": "Tổng quan dự án - ảnh dự phòng", "src": "/assets/uploads/overview-1787919202977.jpg"},
-    "overviewVideo": {"label": "Tổng quan dự án - LINK VIDEO", "src": ""},
-    "location": {"label": "Vị trí - hạ tầng liên kết vùng", "src": "/assets/uploads/location-1787918305654.jpg"},
-    "amenitySpiritual": {"label": "Tiện ích - Không gian tâm linh", "src": "/assets/uploads/amenitySpiritual-1787918511262.jpg"},
-    "amenityLake": {"label": "Tiện ích - Hồ cảnh quan", "src": "/assets/uploads/amenityLake-1787918458877.jpg"},
-    "amenityOffice": {"label": "Tiện ích - Nhà điều hành", "src": "/assets/uploads/amenityOffice-1787918498872.jpg"},
-    "amenityParking": {"label": "Tiện ích - Bãi đỗ xe", "src": "/assets/uploads/overview-1787919202977.jpg"},
-    "amenityGarden": {"label": "Tiện ích - Cây xanh & vườn hoa", "src": "/assets/uploads/amenityGarden-1787918481252.jpg"},
-    "amenityCare": {"label": "Tiện ích - Chăm sóc mộ phần", "src": "/assets/uploads/amenityCare-1787918529370.jpg"},
-    "productSingle": {"label": "Sản phẩm - Mộ đơn", "src": "/assets/uploads/productSingle-1787918273700.jpg"},
-    "productDouble": {"label": "Sản phẩm - Mộ đôi", "src": "/assets/uploads/productDouble-1787918413234.jpg"},
-    "productFamily": {"label": "Sản phẩm - Khu gia tộc", "src": "/assets/uploads/productFamily-1787918353180.jpg"}
+    "logo": {
+      "label": "Logo website",
+      "src": "https://nghiatrangthienphuc.com/wp-content/uploads/2026/01/Logo-Thien-Phuc-Vinh-Hang-Vien.png"
+    },
+    "homeHero": {
+      "label": "Trang chủ - ảnh banner chính",
+      "src": "/assets/uploads/homeHero-1787970136311.jpg"
+    },
+    "overview": {
+      "label": "Tổng quan dự án - ảnh dự phòng",
+      "src": "/assets/uploads/overview-1787919202977.jpg"
+    },
+    "overviewVideo": {
+      "label": "Tổng quan dự án - LINK VIDEO",
+      "src": ""
+    },
+    "location": {
+      "label": "Vị trí - hạ tầng liên kết vùng",
+      "src": "/assets/uploads/location-1787918305654.jpg"
+    },
+    "amenitySpiritual": {
+      "label": "Tiện ích - Không gian tâm linh",
+      "src": "/assets/uploads/amenitySpiritual-1787918511262.jpg"
+    },
+    "amenityLake": {
+      "label": "Tiện ích - Hồ cảnh quan",
+      "src": "/assets/uploads/amenityLake-1787918458877.jpg"
+    },
+    "amenityOffice": {
+      "label": "Tiện ích - Nhà điều hành",
+      "src": "/assets/uploads/amenityOffice-1787918498872.jpg"
+    },
+    "amenityParking": {
+      "label": "Tiện ích - Bãi đỗ xe",
+      "src": "/assets/uploads/overview-1787919202977.jpg"
+    },
+    "amenityGarden": {
+      "label": "Tiện ích - Cây xanh & vườn hoa",
+      "src": "/assets/uploads/amenityGarden-1787918481252.jpg"
+    },
+    "amenityCare": {
+      "label": "Tiện ích - Chăm sóc mộ phần",
+      "src": "/assets/uploads/amenityCare-1787918529370.jpg"
+    },
+    "productSingle": {
+      "label": "Sản phẩm - Mộ đơn",
+      "src": "/assets/uploads/productSingle-1787918273700.jpg"
+    },
+    "productDouble": {
+      "label": "Sản phẩm - Mộ đôi",
+      "src": "/assets/uploads/productDouble-1787918413234.jpg"
+    },
+    "productFamily": {
+      "label": "Sản phẩm - Khu gia tộc",
+      "src": "/assets/uploads/productFamily-1787918353180.jpg"
+    }
   }
 }
