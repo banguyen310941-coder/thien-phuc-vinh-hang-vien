@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Allow: /api/article
+Disallow: /admin
 Disallow: /admin.html
 Disallow: /api/admin-
 Disallow: /api/admin-session
