@@ -1,15 +1,16 @@
 {
-  "cleanUrls": false,
+  "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
     {"source":"/index","destination":"/","permanent":true},
-    {"source":"/index.html","destination":"/","permanent":true},
-    {"source":"/tin-bai.html","has":[{"type":"query","key":"id","value":"(?<id>[a-z0-9-]+)"}],"destination":"/tin-tuc/:id.html","permanent":true}
+    {"source":"/tin-bai","has":[{"type":"query","key":"id","value":"(?<id>[a-z0-9-]+)"}],"destination":"/tin-tuc/:id","permanent":true},
+    {"source":"/tin-bai.html","has":[{"type":"query","key":"id","value":"(?<id>[a-z0-9-]+)"}],"destination":"/tin-tuc/:id","permanent":true}
   ],
   "rewrites": [
-    {"source":"/tin-tuc/:id.html","destination":"/api/article?id=:id"}
+    {"source":"/tin-tuc/:id","destination":"/api/article?id=:id"}
   ],
   "headers": [
+    {"source":"/admin","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
     {"source":"/admin.html","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
     {"source":"/api/admin-(.*)","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
     {"source":"/api/admin-session","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
