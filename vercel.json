@@ -22,6 +22,17 @@
     {"source":"/tin-tuc/:id","destination":"/api/article?id=:id"}
   ],
   "headers": [
+    {"source":"/","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/>; rel=\"canonical\""}]},
+    {"source":"/gioi-thieu","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/gioi-thieu>; rel=\"canonical\""}]},
+    {"source":"/vi-tri","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/vi-tri>; rel=\"canonical\""}]},
+    {"source":"/tien-ich","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/tien-ich>; rel=\"canonical\""}]},
+    {"source":"/san-pham","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/san-pham>; rel=\"canonical\""}]},
+    {"source":"/mo-don","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/mo-don>; rel=\"canonical\""}]},
+    {"source":"/mo-doi","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/mo-doi>; rel=\"canonical\""}]},
+    {"source":"/khu-gia-toc","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/khu-gia-toc>; rel=\"canonical\""}]},
+    {"source":"/phoi-canh","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/phoi-canh>; rel=\"canonical\""}]},
+    {"source":"/tin-tuc","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/tin-tuc>; rel=\"canonical\""}]},
+    {"source":"/lien-he","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/lien-he>; rel=\"canonical\""}]},
     {"source":"/admin","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
     {"source":"/admin.html","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
     {"source":"/api/admin-(.*)","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
