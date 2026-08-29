@@ -1,6 +1,17 @@
 {
-  "updatedAt": "2026-08-29T02:23:47.519Z",
+  "updatedAt": "2026-08-29T02:26:18.861Z",
   "items": [
+    {
+      "id": "m1787970378861",
+      "title": "Tiện ích - Chăm sóc mộ phần",
+      "src": "/assets/uploads/amenityCare-1787970377161.jpg",
+      "alt": "Tiện ích - Chăm sóc mộ phần",
+      "tags": [
+        "giao-dien"
+      ],
+      "createdAt": "2026-08-29T02:26:18.861Z",
+      "createdBy": "admin"
+    },
     {
       "id": "m1787970227519",
       "title": "Tiện ích - Bãi đỗ xe",
