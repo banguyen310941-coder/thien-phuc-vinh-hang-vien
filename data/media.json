@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-29T09:10:40.437Z",
+  "updatedAt": "2026-08-29T09:10:51.180Z",
   "items": [
     {
       "id": "m1787982179699",
@@ -454,12 +454,14 @@
     },
     {
       "id": "m1787970953587",
-      "title": "IMG_0378",
+      "title": "Nhà Tang Lễ",
       "src": "/assets/uploads/media-1787970952272.jpg",
-      "alt": "IMG_0378",
+      "alt": "Nhà Tang Lễ",
       "tags": [],
       "createdAt": "2026-08-29T02:35:53.587Z",
-      "createdBy": "admin"
+      "createdBy": "admin",
+      "updatedAt": "2026-08-29T09:10:51.180Z",
+      "updatedBy": "admin"
     },
     {
       "id": "m1787970949486",
