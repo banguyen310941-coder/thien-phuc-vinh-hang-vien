@@ -3,6 +3,18 @@
   "trailingSlash": false,
   "redirects": [
     {"source":"/index","destination":"/","permanent":true},
+    {"source":"/index.html","destination":"/","permanent":true},
+    {"source":"/gioi-thieu.html","destination":"/gioi-thieu","permanent":true},
+    {"source":"/vi-tri.html","destination":"/vi-tri","permanent":true},
+    {"source":"/tien-ich.html","destination":"/tien-ich","permanent":true},
+    {"source":"/san-pham.html","destination":"/san-pham","permanent":true},
+    {"source":"/mo-don.html","destination":"/mo-don","permanent":true},
+    {"source":"/mo-doi.html","destination":"/mo-doi","permanent":true},
+    {"source":"/khu-gia-toc.html","destination":"/khu-gia-toc","permanent":true},
+    {"source":"/phoi-canh.html","destination":"/phoi-canh","permanent":true},
+    {"source":"/tin-tuc.html","destination":"/tin-tuc","permanent":true},
+    {"source":"/lien-he.html","destination":"/lien-he","permanent":true},
+    {"source":"/tin-tuc/:id.html","destination":"/tin-tuc/:id","permanent":true},
     {"source":"/tin-bai","has":[{"type":"query","key":"id","value":"(?<id>[a-z0-9-]+)"}],"destination":"/tin-tuc/:id","permanent":true},
     {"source":"/tin-bai.html","has":[{"type":"query","key":"id","value":"(?<id>[a-z0-9-]+)"}],"destination":"/tin-tuc/:id","permanent":true}
   ],
