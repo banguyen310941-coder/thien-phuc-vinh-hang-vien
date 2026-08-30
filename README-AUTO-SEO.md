@@ -1,0 +1,1 @@
+Bài SEO tự động được lưu từng file riêng trong data/auto-news để tránh ghi đè data/news.json lớn. lib/news-store.js hợp nhất dữ liệu khi render bài và sitemap.
