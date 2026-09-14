@@ -2,45 +2,274 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    {"source":"/index","destination":"/","permanent":true},
-    {"source":"/index.html","destination":"/","permanent":true},
-    {"source":"/gioi-thieu.html","destination":"/gioi-thieu","permanent":true},
-    {"source":"/vi-tri.html","destination":"/vi-tri","permanent":true},
-    {"source":"/tien-ich.html","destination":"/tien-ich","permanent":true},
-    {"source":"/san-pham.html","destination":"/san-pham","permanent":true},
-    {"source":"/mo-don.html","destination":"/mo-don","permanent":true},
-    {"source":"/mo-doi.html","destination":"/mo-doi","permanent":true},
-    {"source":"/khu-gia-toc.html","destination":"/khu-gia-toc","permanent":true},
-    {"source":"/phoi-canh.html","destination":"/phoi-canh","permanent":true},
-    {"source":"/tin-tuc.html","destination":"/tin-tuc","permanent":true},
-    {"source":"/lien-he.html","destination":"/lien-he","permanent":true},
-    {"source":"/tin-tuc-khoi-dong-du-an","destination":"/tin-tuc/thien-phuc-vinh-hang-vien-uong-bi-yen-tu","permanent":true},
-    {"source":"/tin-tuc-khoi-dong-du-an.html","destination":"/tin-tuc/thien-phuc-vinh-hang-vien-uong-bi-yen-tu","permanent":true},
-    {"source":"/tin-tuc/:id.html","destination":"/tin-tuc/:id","permanent":true},
-    {"source":"/tin-bai","has":[{"type":"query","key":"id","value":"(?<id>[a-z0-9-]+)"}],"destination":"/tin-tuc/:id","permanent":true},
-    {"source":"/tin-bai.html","has":[{"type":"query","key":"id","value":"(?<id>[a-z0-9-]+)"}],"destination":"/tin-tuc/:id","permanent":true}
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/gioi-thieu.html",
+      "destination": "/gioi-thieu",
+      "permanent": true
+    },
+    {
+      "source": "/vi-tri.html",
+      "destination": "/vi-tri",
+      "permanent": true
+    },
+    {
+      "source": "/tien-ich.html",
+      "destination": "/tien-ich",
+      "permanent": true
+    },
+    {
+      "source": "/san-pham.html",
+      "destination": "/san-pham",
+      "permanent": true
+    },
+    {
+      "source": "/mo-don.html",
+      "destination": "/mo-don",
+      "permanent": true
+    },
+    {
+      "source": "/mo-doi.html",
+      "destination": "/mo-doi",
+      "permanent": true
+    },
+    {
+      "source": "/khu-gia-toc.html",
+      "destination": "/khu-gia-toc",
+      "permanent": true
+    },
+    {
+      "source": "/phoi-canh.html",
+      "destination": "/phoi-canh",
+      "permanent": true
+    },
+    {
+      "source": "/tin-tuc.html",
+      "destination": "/tin-tuc",
+      "permanent": true
+    },
+    {
+      "source": "/lien-he.html",
+      "destination": "/lien-he",
+      "permanent": true
+    },
+    {
+      "source": "/tin-tuc-khoi-dong-du-an",
+      "destination": "/tin-tuc/thien-phuc-vinh-hang-vien-uong-bi-yen-tu",
+      "permanent": true
+    },
+    {
+      "source": "/tin-tuc-khoi-dong-du-an.html",
+      "destination": "/tin-tuc/thien-phuc-vinh-hang-vien-uong-bi-yen-tu",
+      "permanent": true
+    },
+    {
+      "source": "/tin-tuc/:id.html",
+      "destination": "/tin-tuc/:id",
+      "permanent": true
+    },
+    {
+      "source": "/tin-bai",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "(?<id>[a-z0-9-]+)"
+        }
+      ],
+      "destination": "/tin-tuc/:id",
+      "permanent": true
+    },
+    {
+      "source": "/tin-bai.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "(?<id>[a-z0-9-]+)"
+        }
+      ],
+      "destination": "/tin-tuc/:id",
+      "permanent": true
+    },
+    {
+      "source": "/tin-tuc/nghia-trang-quang-ninh",
+      "destination": "/tin-tuc/nghia-trang-quang-ninh-lua-chon-noi-an-nghi",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    {"source":"/sitemap.xml","destination":"/api/sitemap"},
-    {"source":"/tin-tuc/:id","destination":"/api/article?id=:id"}
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    },
+    {
+      "source": "/tin-tuc/:id",
+      "destination": "/api/article?id=:id"
+    }
   ],
   "headers": [
-    {"source":"/","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/>; rel=\"canonical\""}]},
-    {"source":"/gioi-thieu","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/gioi-thieu>; rel=\"canonical\""}]},
-    {"source":"/vi-tri","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/vi-tri>; rel=\"canonical\""}]},
-    {"source":"/tien-ich","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/tien-ich>; rel=\"canonical\""}]},
-    {"source":"/san-pham","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/san-pham>; rel=\"canonical\""}]},
-    {"source":"/mo-don","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/mo-don>; rel=\"canonical\""}]},
-    {"source":"/mo-doi","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/mo-doi>; rel=\"canonical\""}]},
-    {"source":"/khu-gia-toc","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/khu-gia-toc>; rel=\"canonical\""}]},
-    {"source":"/phoi-canh","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/phoi-canh>; rel=\"canonical\""}]},
-    {"source":"/tin-tuc","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/tin-tuc>; rel=\"canonical\""}]},
-    {"source":"/lien-he","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/lien-he>; rel=\"canonical\""}]},
-    {"source":"/admin","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
-    {"source":"/admin.html","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
-    {"source":"/api/admin-(.*)","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
-    {"source":"/api/admin-session","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
-    {"source":"/api/admin-login","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
-    {"source":"/api/admin-logout","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]}
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://www.thienphucvinhhangvien.net/>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/gioi-thieu",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://www.thienphucvinhhangvien.net/gioi-thieu>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/vi-tri",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://www.thienphucvinhhangvien.net/vi-tri>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/tien-ich",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://www.thienphucvinhhangvien.net/tien-ich>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/san-pham",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://www.thienphucvinhhangvien.net/san-pham>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/mo-don",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://www.thienphucvinhhangvien.net/mo-don>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/mo-doi",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://www.thienphucvinhhangvien.net/mo-doi>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/khu-gia-toc",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://www.thienphucvinhhangvien.net/khu-gia-toc>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/phoi-canh",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://www.thienphucvinhhangvien.net/phoi-canh>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/tin-tuc",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://www.thienphucvinhhangvien.net/tin-tuc>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/lien-he",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://www.thienphucvinhhangvien.net/lien-he>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/admin",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    },
+    {
+      "source": "/admin.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    },
+    {
+      "source": "/api/admin-(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    },
+    {
+      "source": "/api/admin-session",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    },
+    {
+      "source": "/api/admin-login",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    },
+    {
+      "source": "/api/admin-logout",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    }
   ]
 }
