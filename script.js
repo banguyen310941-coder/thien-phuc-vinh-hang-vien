@@ -3,7 +3,7 @@ function initGoogleAdsTracking(){if(location.pathname.includes('admin'))return;w
 function trackAdsEvent(name,params={}){if(typeof window.gtag!=='function')return;window.gtag('event',name,{send_to:GOOGLE_ADS_ID,page_location:location.href,...params})}
 initGoogleAdsTracking();
 
-const META_PIXEL_ID='2970277749987887';
+const META_PIXEL_ID='1891481938481087';
 function initMetaPixel(){if(location.pathname.includes('admin')||window.__tpMetaPixelConfigured)return;!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');window.fbq('init',META_PIXEL_ID);window.fbq('track','PageView');window.__tpMetaPixelConfigured=true}
 initMetaPixel();
 
