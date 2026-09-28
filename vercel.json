@@ -15,7 +15,7 @@
     {"source":"/tin-tuc.html","destination":"/tin-tuc","permanent":true},
     {"source":"/lien-he.html","destination":"/lien-he","permanent":true},
     {"source":"/tin-tuc-khoi-dong-du-an","destination":"/tin-tuc/thien-phuc-vinh-hang-vien-uong-bi-yen-tu","permanent":true},
-    {"source":"/tin-tuc/nghia-trang-quang-ninh","destination":"/tin-tuc/nghia-trang-quang-ninh-lua-chon-noi-an-nghi","permanent":true},
+    {"source":"/tin-tuc/nghia-trang-quang-ninh-lua-chon-noi-an-nghi","destination":"/tin-tuc/nghia-trang-quang-ninh","permanent":true},
     {"source":"/tin-tuc/kinh-nghiem-chon-mo-doi","destination":"/tin-tuc/mo-doi","permanent":true},
     {"source":"/tin-tuc-khoi-dong-du-an.html","destination":"/tin-tuc/thien-phuc-vinh-hang-vien-uong-bi-yen-tu","permanent":true},
     {"source":"/tin-tuc/:id.html","destination":"/tin-tuc/:id","permanent":true},
