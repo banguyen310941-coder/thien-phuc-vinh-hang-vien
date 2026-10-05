@@ -15,7 +15,7 @@ module.exports=async function(req,res){
   const html=`<h2>Khách hàng đăng ký từ website Thiên Phúc Vĩnh Hằng Viên</h2><p><b>Họ và tên:</b> ${esc(name)}</p><p><b>Số điện thoại:</b> ${esc(phone)}</p><p><b>Email:</b> ${esc(email||'Không cung cấp')}</p><p><b>Nội dung:</b><br>${esc(message||'Không có').replace(/\n/g,'<br>')}</p>`;
   try{
     const out=await postJson('api.resend.com','/emails',{'Authorization':`Bearer ${key}`},{from,to:[to],reply_to:email||undefined,subject:`Đăng ký tư vấn Thiên Phúc - ${String(name).slice(0,80)}`,html});
-    if(out.status<200||out.status>=300)return sendJson(res,502,{ok:false,error:'Chưa gửi được email. Vui lòng gọi Hotline 0962.496.267.'});
+    if(out.status<200||out.status>=300)return sendJson(res,502,{ok:false,error:'Chưa gửi được email. Vui lòng gọi Hotline 0981.211.333.'});
     return sendJson(res,200,{ok:true,message:'Cảm ơn bạn. Thông tin đã được gửi thành công.'});
-  }catch(e){return sendJson(res,500,{ok:false,error:'Có lỗi khi gửi thông tin. Vui lòng gọi Hotline 0962.496.267.'});}
+  }catch(e){return sendJson(res,500,{ok:false,error:'Có lỗi khi gửi thông tin. Vui lòng gọi Hotline 0981.211.333.'});}
 };
