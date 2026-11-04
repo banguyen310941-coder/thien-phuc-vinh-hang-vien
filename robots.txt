@@ -1,13 +1,7 @@
 User-agent: *
 Allow: /
-Allow: /api/article
 Disallow: /admin
 Disallow: /admin.html
-Disallow: /api/admin-
-Disallow: /api/admin-session
-Disallow: /api/admin-login
-Disallow: /api/admin-logout
-Disallow: /api/contact
+Disallow: /api/
 
 Sitemap: https://www.thienphucvinhhangvien.net/sitemap.xml
-Host: www.thienphucvinhhangvien.net
