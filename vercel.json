@@ -30,6 +30,8 @@
     {"source":"/tin-tuc/:id","destination":"/api/article?id=:id"}
   ],
   "headers": [
+    {"source":"/lib/news-template","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow"}]},
+    {"source":"/lib/news-template.html","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow"}]},
     {"source":"/","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/>; rel=\"canonical\""}]},
     {"source":"/gioi-thieu","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/gioi-thieu>; rel=\"canonical\""}]},
     {"source":"/vi-tri","headers":[{"key":"Link","value":"<https://www.thienphucvinhhangvien.net/vi-tri>; rel=\"canonical\""}]},

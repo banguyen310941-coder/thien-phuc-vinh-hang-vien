@@ -11,7 +11,7 @@ const articlePage = require('../api/article');
 const sitemap = require('../api/sitemap');
 const config = require('../vercel.json');
 const base = 'https://www.thienphucvinhhangvien.net';
-const template = fs.readFileSync(path.join(__dirname, '..', 'tin-tuc.html'), 'utf8');
+const template = fs.readFileSync(path.join(__dirname, '..', 'lib', 'news-template.html'), 'utf8');
 const published = getPublishedSummaries(getNews().items);
 
 function response() {
@@ -104,6 +104,7 @@ test('canonical news index rewrite precedes article rewrite; old broken links ha
   const index = config.rewrites.findIndex(route => route.source === '/tin-tuc');
   assert.ok(index >= 0 && index < config.rewrites.findIndex(route => route.source === '/tin-tuc/:id'));
   assert.equal(config.rewrites[index].destination, '/api/news?view=page');
+  assert.equal(fs.existsSync(path.join(__dirname, '..', 'tin-tuc.html')), false, 'A static /tin-tuc page shadows the Vercel rewrite');
   for (const [from, to] of [['/khu-mo-gia-toc', '/khu-gia-toc'], ['/tin-tuc/gia-mo-don', '/tin-tuc/gia-mo-don-20260910']]) {
     assert.ok(config.redirects.some(route => route.source === from && route.destination === to && route.permanent));
   }
