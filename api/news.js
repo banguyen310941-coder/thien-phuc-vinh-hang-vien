@@ -1,5 +1,6 @@
 const {getNews}=require('../lib/news-store');
 module.exports=(req,res)=>{
+ if(req.query?.view==='page')return require('../lib/news-page')(req,res);
  try{
   const news=getNews();
   const items=(news.items||[]).filter(n=>n&&n.status==='published').sort((a,b)=>String(b.publishedAt||'').localeCompare(String(a.publishedAt||'')));
