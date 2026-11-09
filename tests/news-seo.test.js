@@ -5,7 +5,8 @@ const path = require('node:path');
 const vm = require('node:vm');
 const { getNews } = require('../lib/news-store');
 const { getPublishedSummaries, renderNewsIndex } = require('../lib/news-index');
-const newsPage = require('../api/news-page');
+const newsApi = require('../api/news');
+const newsPage = (req, res) => newsApi({ ...req, query: { view: 'page' } }, res);
 const articlePage = require('../api/article');
 const sitemap = require('../api/sitemap');
 const config = require('../vercel.json');
@@ -18,7 +19,8 @@ function response() {
     code: 200, headers: {}, body: '',
     status(code) { this.code = code; return this; },
     setHeader(key, value) { this.headers[key] = value; },
-    send(body) { this.body = body; return this; }
+    send(body) { this.body = body; return this; },
+    json(body) { this.body = body; return this; }
   };
 }
 
@@ -47,6 +49,17 @@ test('listing data excludes unpublished articles, unsafe IDs and full article bo
   ]);
   assert.deepEqual(items.map(item => item.id), ['new', 'old']);
   assert.ok(items.every(item => !Object.hasOwn(item, 'content') && !Object.hasOwn(item, 'status')));
+});
+
+test('existing news JSON API stays compatible and function count does not increase', () => {
+  const res = response();
+  newsApi({ query: {} }, res);
+  assert.equal(res.code, 200);
+  assert.equal(res.headers['Content-Type'], 'application/json; charset=utf-8');
+  assert.equal(res.body.items.length, published.length);
+  assert.ok(res.body.items.every(item => item.status === 'published'));
+  assert.ok(res.body.items.some(item => item.content));
+  assert.equal(fs.readdirSync(path.join(__dirname, '..', 'api')).filter(file => file.endsWith('.js')).length, 12);
 });
 
 test('HTML and JSON bootstrap safely preserve article text', () => {
@@ -90,7 +103,7 @@ test('client filters work from embedded summaries without another request', () =
 test('canonical news index rewrite precedes article rewrite; old broken links have permanent destinations', () => {
   const index = config.rewrites.findIndex(route => route.source === '/tin-tuc');
   assert.ok(index >= 0 && index < config.rewrites.findIndex(route => route.source === '/tin-tuc/:id'));
-  assert.equal(config.rewrites[index].destination, '/api/news-page');
+  assert.equal(config.rewrites[index].destination, '/api/news?view=page');
   for (const [from, to] of [['/khu-mo-gia-toc', '/khu-gia-toc'], ['/tin-tuc/gia-mo-don', '/tin-tuc/gia-mo-don-20260910']]) {
     assert.ok(config.redirects.some(route => route.source === from && route.destination === to && route.permanent));
   }
