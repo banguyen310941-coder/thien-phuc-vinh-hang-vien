@@ -2,6 +2,8 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
+    {"source":"/khu-mo-gia-toc","destination":"/khu-gia-toc","permanent":true},
+    {"source":"/tin-tuc/gia-mo-don","destination":"/tin-tuc/gia-mo-don-20260910","permanent":true},
     {"source":"/index","destination":"/","permanent":true},
     {"source":"/index.html","destination":"/","permanent":true},
     {"source":"/gioi-thieu.html","destination":"/gioi-thieu","permanent":true},
@@ -23,6 +25,7 @@
     {"source":"/tin-bai.html","has":[{"type":"query","key":"id","value":"(?<id>[a-z0-9-]+)"}],"destination":"/tin-tuc/:id","permanent":true}
   ],
   "rewrites": [
+    {"source":"/tin-tuc","destination":"/api/news-page"},
     {"source":"/sitemap.xml","destination":"/api/sitemap"},
     {"source":"/tin-tuc/:id","destination":"/api/article?id=:id"}
   ],
